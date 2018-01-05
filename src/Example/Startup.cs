@@ -17,6 +17,8 @@ namespace Example
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IDependencyResolver>(s => new FuncDependencyResolver(type => s.GetRequiredService(type)));
+
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
             services.AddSingleton<IDocumentWriter, DocumentWriter>();
 
@@ -28,8 +30,7 @@ namespace Example
             services.AddSingleton<DroidType>();
             services.AddSingleton<CharacterInterface>();
             services.AddSingleton<EpisodeEnum>();
-            services.AddSingleton<ISchema>(
-                s => new StarWarsSchema(new FuncDependencyResolver(type => (IGraphType) s.GetRequiredService(type))));
+            services.AddSingleton<ISchema, StarWarsSchema>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
