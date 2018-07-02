@@ -1,3 +1,5 @@
+# This example is no longer maintained - see all examples here: https://github.com/graphql-dotnet/examples
+
 # ASP.NET Core GraphQL Example
 
 ```
